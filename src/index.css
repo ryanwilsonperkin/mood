@@ -356,37 +356,13 @@ body {
   line-height: 1.5;
 }
 
-.toggle-row,
-.time-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+.settings-list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--text);
+}
+
+.settings-list li {
   margin-bottom: 8px;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.toggle-row input[type='checkbox'] {
-  width: 20px;
-  height: 20px;
-  accent-color: var(--accent);
-}
-
-.time-row input[type='time'] {
-  padding: 6px 8px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: var(--bg);
-  color: var(--text-h);
-  font-family: var(--sans);
-  font-size: 15px;
-}
-
-.time-row input[type='time']:focus {
-  outline: none;
-  border-color: var(--accent);
+  line-height: 1.5;
 }

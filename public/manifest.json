@@ -2,25 +2,26 @@
   "name": "Mood",
   "short_name": "Mood",
   "description": "Track your daily mood",
-  "start_url": "/",
+  "start_url": "/mood/",
   "display": "standalone",
+  "scope": "/mood/",
   "background_color": "#16171d",
   "theme_color": "#5B7FA5",
   "icons": [
     {
-      "src": "/icon-192.svg",
+      "src": "./icon-192.svg",
       "sizes": "192x192",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "/icon-512.svg",
+      "src": "./icon-512.svg",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "/icon-512.svg",
+      "src": "./icon-512.svg",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "maskable"

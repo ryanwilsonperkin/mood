@@ -14,13 +14,10 @@ export function EditView({ date }: Props) {
 
   const [mood, setMood] = useState<Mood | null>(existing?.mood ?? null);
   const [text, setText] = useState(existing?.text ?? '');
-  const [saved, setSaved] = useState(false);
-
   function handleSave() {
     if (!mood) return;
     saveEntry({ date, mood, text: text.trim() });
-    setSaved(true);
-    setTimeout(() => navigate('/'), 600);
+    navigate('/');
   }
 
   function handleDelete() {
@@ -57,9 +54,9 @@ export function EditView({ date }: Props) {
         <button
           class="btn-primary"
           onClick={handleSave}
-          disabled={!mood || saved}
+          disabled={!mood}
         >
-          {saved ? '✓ Saved!' : existing ? 'Update' : 'Save'}
+          {existing ? 'Update' : 'Save'}
         </button>
         {existing ? (
           <button class="btn-danger" onClick={handleDelete}>

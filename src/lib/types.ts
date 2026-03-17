@@ -6,12 +6,6 @@ export interface MoodEntry {
   text: string;
 }
 
-export interface Settings {
-  notificationsEnabled: boolean;
-  notificationHour: number; // 0-23
-  notificationMinute: number; // 0-59
-}
-
 export const MOODS: Mood[] = ['excellent', 'good', 'neutral', 'bad', 'awful'];
 
 export const MOOD_LABELS: Record<Mood, string> = {
