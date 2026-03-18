@@ -1,23 +1,49 @@
+import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { getAllEntries } from '../lib/store';
-import { lastNDays, formatDisplayDate, today } from '../lib/dates';
-import { MoodIcon } from '../components/MoodIcon';
+import { recentDays, formatDisplayDate, today } from '../lib/dates';
+import { EmptyMoodIcon, MoodIcon } from '../components/MoodIcon';
 import { navigate } from '../lib/router';
 import type { MoodEntry } from '../lib/types';
 
-export function CalendarView() {
-  const entries = getAllEntries();
-  const entryMap = new Map<string, MoodEntry>();
-  for (const e of entries) {
-    entryMap.set(e.date, e);
-  }
+const PAGE_SIZE = 30;
 
-  const days = lastNDays(30);
+export function CalendarView() {
+  const [visibleDays, setVisibleDays] = useState(PAGE_SIZE);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  const entries = getAllEntries();
+  const entryMap = useMemo(() => {
+    const map = new Map<string, MoodEntry>();
+    for (const entry of entries) {
+      map.set(entry.date, entry);
+    }
+    return map;
+  }, [entries]);
+
+  const days = useMemo(() => recentDays(visibleDays), [visibleDays]);
   const todayStr = today();
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setVisibleDays((count) => count + PAGE_SIZE);
+        }
+      },
+      { rootMargin: '200px 0px' },
+    );
+
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div class="page">
       <h1>Your Mood</h1>
-      <p class="subtitle">Last 30 days</p>
+      <p class="subtitle">Showing {visibleDays} days, loading more as you scroll</p>
       <div class="calendar-list">
         {days.map((date) => {
           const entry = entryMap.get(date);
@@ -35,9 +61,7 @@ export function CalendarView() {
               }}
             >
               <div class="entry-date">
-                {isToday ? (
-                  <span class="today-badge">Today</span>
-                ) : null}
+                {isToday ? <span class="today-badge">Today</span> : null}
                 <span>{formatDisplayDate(date)}</span>
               </div>
               <div class="entry-content">
@@ -49,12 +73,18 @@ export function CalendarView() {
                     </span>
                   </>
                 ) : (
-                  <span class="entry-empty">No entry</span>
+                  <>
+                    <EmptyMoodIcon size={32} />
+                    <span class="entry-empty">No entry</span>
+                  </>
                 )}
               </div>
             </button>
           );
         })}
+        <div ref={sentinelRef} class="calendar-loader">
+          Scroll for older days
+        </div>
       </div>
     </div>
   );

@@ -24,13 +24,20 @@ export function formatDisplayDate(s: string): string {
   });
 }
 
-/** Get array of date strings for the last N days */
-export function lastNDays(n: number): string[] {
+export function recentDays(count: number, offset = 0): string[] {
   const dates: string[] = [];
   const d = new Date();
-  for (let i = 0; i < n; i++) {
+  d.setDate(d.getDate() - offset);
+
+  for (let i = 0; i < count; i++) {
     dates.push(formatDate(d));
     d.setDate(d.getDate() - 1);
   }
+
   return dates;
+}
+
+/** Get array of date strings for the last N days */
+export function lastNDays(n: number): string[] {
+  return recentDays(n);
 }

@@ -6,6 +6,10 @@ interface Props {
   size?: number;
 }
 
+interface EmptyProps {
+  size?: number;
+}
+
 export function MoodIcon({ mood, size = 40 }: Props) {
   const color = MOOD_COLORS[mood];
 
@@ -24,6 +28,25 @@ export function MoodIcon({ mood, size = 40 }: Props) {
       <circle cx="24" cy="24" r="22" stroke={color} stroke-width="2" />
       {renderEyes(mood, color)}
       {renderMouth(mood, color)}
+    </svg>
+  );
+}
+
+export function EmptyMoodIcon({ size = 40 }: EmptyProps) {
+  const color = '#8e8e93';
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 48 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-label="No entry"
+    >
+      <title>No entry</title>
+      <circle cx="24" cy="24" r="22" fill={color} opacity="0.08" />
+      <circle cx="24" cy="24" r="22" stroke={color} stroke-width="2" opacity="0.7" />
     </svg>
   );
 }

@@ -172,6 +172,13 @@ body {
   gap: 4px;
 }
 
+.calendar-loader {
+  padding: 16px 12px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
 .calendar-entry {
   display: flex;
   align-items: center;
