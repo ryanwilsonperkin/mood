@@ -1,7 +1,6 @@
 import { getAllEntries } from '../lib/store';
 import { lastNDays, formatDisplayDate, today } from '../lib/dates';
 import { MoodIcon } from '../components/MoodIcon';
-import { MOOD_LABELS } from '../lib/types';
 import { navigate } from '../lib/router';
 import type { MoodEntry } from '../lib/types';
 
@@ -45,10 +44,9 @@ export function CalendarView() {
                 {entry ? (
                   <>
                     <MoodIcon mood={entry.mood} size={32} />
-                    <span class="entry-mood-label">{MOOD_LABELS[entry.mood]}</span>
-                    {entry.text ? (
-                      <span class="entry-text">{entry.text}</span>
-                    ) : null}
+                    <span class={`entry-text ${entry.text ? '' : 'placeholder'}`}>
+                      {entry.text || 'No note recorded'}
+                    </span>
                   </>
                 ) : (
                   <span class="entry-empty">No entry</span>

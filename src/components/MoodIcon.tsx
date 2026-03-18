@@ -1,5 +1,5 @@
 import type { Mood } from '../lib/types';
-import { MOOD_COLORS } from '../lib/types';
+import { MOOD_COLORS, MOOD_LABELS } from '../lib/types';
 
 interface Props {
   mood: Mood;
@@ -19,6 +19,7 @@ export function MoodIcon({ mood, size = 40 }: Props) {
       xmlns="http://www.w3.org/2000/svg"
       aria-label={mood}
     >
+      <title>{MOOD_LABELS[mood]}</title>
       <circle cx="24" cy="24" r="22" fill={color} opacity="0.15" />
       <circle cx="24" cy="24" r="22" stroke={color} stroke-width="2" />
       {renderEyes(mood, color)}
