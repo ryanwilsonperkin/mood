@@ -4,12 +4,16 @@ import { CalendarView } from './pages/CalendarView';
 import { TodayView } from './pages/TodayView';
 import { EditView } from './pages/EditView';
 import { SettingsView } from './pages/SettingsView';
+import { MonthCalendarView } from './pages/MonthCalendarView';
 
 export function App() {
   const { path, params } = route.value;
 
   let page;
   switch (path) {
+    case '/calendar':
+      page = <MonthCalendarView />;
+      break;
     case '/today':
       page = <TodayView />;
       break;

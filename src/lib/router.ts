@@ -10,6 +10,7 @@ function parseHash(): Route {
   const parts = hash.split('/').filter(Boolean);
 
   if (parts.length === 0) return { path: '/', params: {} };
+  if (parts[0] === 'calendar') return { path: '/calendar', params: {} };
   if (parts[0] === 'today') return { path: '/today', params: {} };
   if (parts[0] === 'settings') return { path: '/settings', params: {} };
   if (parts[0] === 'edit' && parts[1]) return { path: '/edit', params: { date: parts[1] } };
