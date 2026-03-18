@@ -303,6 +303,25 @@ body {
   cursor: not-allowed;
 }
 
+.btn-secondary {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  color: var(--text-h);
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-secondary:hover {
+  background: var(--bg-hover);
+}
+
 .btn-danger {
   display: block;
   width: 100%;
@@ -358,6 +377,38 @@ body {
   font-size: 14px;
   color: var(--text-dim);
   line-height: 1.5;
+}
+
+.settings-note code {
+  font-family: var(--mono);
+  color: var(--text-h);
+}
+
+.settings-actions {
+  margin-top: 16px;
+}
+
+.settings-detail {
+  margin-top: 12px;
+}
+
+.settings-success,
+.settings-error {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.settings-success {
+  color: var(--green);
+}
+
+.settings-error {
+  color: var(--red);
+}
+
+.file-input {
+  display: none;
 }
 
 .settings-list {
