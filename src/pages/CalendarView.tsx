@@ -43,7 +43,6 @@ export function CalendarView() {
   return (
     <div class="page">
       <h1>Your Mood</h1>
-      <p class="subtitle">Showing {visibleDays} days, loading more as you scroll</p>
       <div class="calendar-list">
         {days.map((date) => {
           const entry = entryMap.get(date);
